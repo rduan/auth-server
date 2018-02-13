@@ -5,7 +5,7 @@ exports.signup = function(req, res, next) {
   const email = req.body.email;
   const password = req.body.password;
 
-  console.log(email, password)
+  // console.log(email, password)
 
   if(!email || !password) {
     return res.status(422).send({error: 'you musht provide email and password'});
@@ -16,6 +16,7 @@ exports.signup = function(req, res, next) {
     if(err) {return next(err)}
 
     if(existingUser) {
+      console.log('existing user: ',existingUser);
       return res.status(422).send({error: 'email already exist'});
     }
 
@@ -26,6 +27,13 @@ exports.signup = function(req, res, next) {
 
     user.save().then((user) => res.send(user));
 
+    User.findOne({email}).then((user)=>{
+      console.log("user ====")
+      console.log(user);
+    }).catch((err)=>{
+      console.log("err ====")
+      console.log(err);
+    })
 
   });
 
