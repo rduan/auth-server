@@ -8,7 +8,7 @@ const app = express();
 const router = require('./router');
 
 //db setup
-mongoose.connect('mongodb://localhost:27017')
+mongoose.connect('mongodb://localhost:28017')
 
 //App setup
 app.use(morgan('combined'));
